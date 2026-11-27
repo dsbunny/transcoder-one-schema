@@ -17,6 +17,15 @@ import {
 } from "./request.schema.js";
 import { TranscodeResponseSchema } from "./response.schema.js";
 
+export const TranscoderOnePingResponseSchema = z.object({
+	ping: z.literal('pong'),
+	timestamp: z.iso.datetime(),
+}).register(transcoderOneRegistry, {
+	id: 'TranscoderOnePingResponseSchema',
+	description: 'Transcoder One ping response schema',
+});
+export type TranscoderOnePingResponse = z.infer<typeof TranscoderOnePingResponseSchema>;
+
 // #region Transcoder ONE
 export const GetJobStatusRequestSchema = z.object({
 	'@type': z.literal('GetJobStatusRequest')

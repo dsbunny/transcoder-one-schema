@@ -7,6 +7,13 @@ import { AllMetadataSchema, RejectedMetadataSchema, } from '@dsbunny/metadata-sc
 import { TranscodeProgressSchema } from "./progress.schema.js";
 import { TranscodeFileRequestSchema, TranscodeImageRequestSchema, TranscodeTextureRequestSchema, TranscodeVideoRequestSchema, } from "./request.schema.js";
 import { TranscodeResponseSchema } from "./response.schema.js";
+export const TranscoderOnePingResponseSchema = z.object({
+    ping: z.literal('pong'),
+    timestamp: z.iso.datetime(),
+}).register(transcoderOneRegistry, {
+    id: 'TranscoderOnePingResponseSchema',
+    description: 'Transcoder One ping response schema',
+});
 // #region Transcoder ONE
 export const GetJobStatusRequestSchema = z.object({
     '@type': z.literal('GetJobStatusRequest')
